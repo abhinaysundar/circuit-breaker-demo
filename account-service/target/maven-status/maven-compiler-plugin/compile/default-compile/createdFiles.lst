@@ -1,0 +1,12 @@
+com\bank\account\dto\TransferRequest.class
+com\bank\account\service\NotificationServiceClient.class
+com\bank\account\service\AccountService.class
+com\bank\account\config\AppConfig.class
+com\bank\account\repository\AccountRepository.class
+com\bank\account\controller\AccountController.class
+com\bank\account\dto\AccountRequest.class
+com\bank\account\model\AccountStatus.class
+com\bank\account\dto\AccountResponse.class
+com\bank\account\model\Account.class
+com\bank\account\AccountServiceApplication.class
+com\bank\account\service\TransactionServiceClient.class

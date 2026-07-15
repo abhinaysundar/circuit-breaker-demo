@@ -1,0 +1,52 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: account-service
+  datasource:
+    url: jdbc:h2:mem:accountdb
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+transaction:
+  service:
+    url: http://localhost:8082
+
+notification:
+  service:
+    url: http://localhost:8083
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        sliding-window-size: 5
+        minimum-number-of-calls: 3
+        permitted-number-of-calls-in-half-open-state: 2
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 10s
+        failure-rate-threshold: 50
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 2s
+    instances:
+      transactionService:
+        base-config: default
+      notificationService:
+        base-config: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,circuitbreakers
+  endpoint:
+    circuitbreakers:
+      enabled: true
